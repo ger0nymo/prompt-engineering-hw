@@ -16,4 +16,14 @@ export class QuestionController {
   ) {
     return this.questionService.generateTranslationPairs(originalLanguage, targetLanguage, topic, level);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('math-question')
+  async generateMathQuestion(
+    @Query('language') language: string,
+    @Query('level') level: string,
+    @Query('topic') topic: string,
+  ) {
+    return this.questionService.generateMathQuestion(language, level, topic);
+  }
 }
